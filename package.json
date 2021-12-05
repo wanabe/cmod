@@ -22,6 +22,7 @@
     "electron": "^16.0.4"
   },
   "dependencies": {
+    "csv": "^6.0.4",
     "electron-squirrel-startup": "^1.0.0"
   },
   "config": {

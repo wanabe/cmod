@@ -1,0 +1,58 @@
+{
+  "converters": [
+    {
+      "name": "csv2tsv",
+      "description": "convert CSV file to TSV on clipboard",
+      "input": {
+        "type": "file",
+        "path": "cmod_ex1.csv",
+        "unlink": false
+      },
+      "filters": [
+        "(src) => { return csv.parse(src, {relax_column_count: true}); }",
+        "(c) => { return csv.stringify(c, {delimiter: '\t'}); }"
+      ],
+      "output": {
+        "type": "clipboard"
+      }
+    },
+    {
+      "name": "pr2tsv",
+      "description": "convert https://github.com/pulls on clipboard to TSV on clipboard",
+      "input": {
+        "type": "clipboard",
+        "regexp": "Created *Assigned *Mentioned *Review *requests"
+      },
+      "filters": [
+        "(txt) => { return txt.replace(/(.*\\n)*Created *Assigned *Mentioned *Review *requests\\n.*\\n*/, ''); }",
+        "(txt) => { return txt.replace(/\\n ProTip(.*\\n)*.*/, ''); }",
+        "(txt) => { return txt.replace(/^([^ \/#]*\\/[^ \/#]*)\\s+(.*?)(?:  .*)?\\n#([0-9]*).*(?:[^\/]*(?:\\n|$))*/gm, (_, repo, title, id) => {return `${repo}\t${id}\t${title}\n` ; } ); }",
+        "(tsv) => { return tsv.replace(/(.*)\t(.*)\t(.*)/g, (_, repo, id, title) => {return `${repo}\thttps://github.com/${repo}/pull/${id}\t${title}` ; } ); }",
+        "(txt) => { return txt.replace(/^[\\s\\n]*/, ''); }"
+      ],
+      "output": {
+        "type": "clipboard"
+      }
+    },
+    {
+      "name": "repo-pr2tsv",
+      "description": "convert https://github.com/some-org/some-repo/pulls on clipboard to TSV on clipboard",
+      "input": {
+        "type": "clipboard",
+        "regexp": "\n[^\\s/]+\\n/\\n[^\\s/]+\\n(?:Private|Public)\n[0-9.]+[kmg]?\n?[0-9.]+[kmg]?\nCode\n(?:.*\n)* ProTip.*\n. [0-9]* GitHub, Inc\\."
+      },
+      "filters": [
+        "(txt) => { return txt.replace(/^(?:.*\\n)*?([^\\s\\/]+)\\n\\/\\n([^\\s\\/]+)\\n(?:Private|Public)\\n[0-9.]+[kmg]?\\n?[0-9.]+[kmg]?\\nCode\\n(?: *[^ \\n]+.*\\n)+(?: *\\n)+/, (_, org, repo) => `${org}/${repo}\n`); }",
+        "(txt) => { return txt.replace(/\\n ProTip(.*\\n)*.*/, ''); }",
+        "(txt) => { return txt.replace(/^([^#].*)\\n#([0-9]+) .*\\n(?:[^#].*\\n|\\n)*(?!#)/gm, (_, title, id) => {return `${id}\\t${title}\\n` ; } ); }",
+        "(txt) => { return {repo: txt.substring(0, txt.indexOf('\\n')), tsv: txt.substring(txt.indexOf('\\n') + 1)}; }",
+        "({repo, tsv}) => { return tsv.replace(/(.*)\t(.*)/g, (_, id, title) => {return `${repo}\thttps://github.com/${repo}/pull/${id}\t${title}` ; } ); }"
+      ],
+      "output": {
+        "type": "clipboard"
+      }
+    }
+  ]
+}
+
+

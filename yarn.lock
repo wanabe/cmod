@@ -929,6 +929,31 @@ cross-zip@^4.0.0:
   resolved "https://registry.yarnpkg.com/cross-zip/-/cross-zip-4.0.0.tgz#c29bfb2c001659a6d480ae9596f3bee83b48a230"
   integrity sha512-MEzGfZo0rqE10O/B+AEcCSJLZsrWuRUvmqJTqHNqBtALhaJc3E3ixLGLJNTRzEA2K34wbmOHC4fwYs9sVsdcCA==
 
+csv-generate@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/csv-generate/-/csv-generate-4.0.3.tgz#bb95133c918dfcd4a104ce98326c0e4bea4d5aff"
+  integrity sha512-BLkPf0MkFfPGNNkqjnT16aNMMHUrbbguDE0pMPDcqrBeMoPOKw04dPl1VNQd6+j/JjmrXjQfFKgz6p3FT+bJFA==
+
+csv-parse@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-5.0.3.tgz#eeb0b1ac8bf2970f703176c8f54d313325b6d2e8"
+  integrity sha512-86R0WU4aEEF/1fPZKxP3NmDAYC4Ce1t9iFgKPZogG5Lvk4m9WZQkCEsDANktG29jppejwclTtEOzubN2ieCJqw==
+
+csv-stringify@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-6.0.4.tgz#8c1656fef2aa05c2ccf7401240d177944a08479e"
+  integrity sha512-Z3EbRQWwkOV3Qc2fQnJmfjrxRgAwH9AncnNK2jmtTvBvFjj/hESZUGm42YvTh9kMw2OOGPHQn5Yt0EbqoRtUVQ==
+
+csv@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/csv/-/csv-6.0.4.tgz#67d77111f3595d7dc9c8fd4e36819d2f7b4f608e"
+  integrity sha512-v/7cLK2clZ0QpAc+/1Bl+IF3U7Cxn0oszck+tJmnM2dC7yYPUz5A/i3r2ARkaVpd3RcAzOgTh94ISGzyfF/7XQ==
+  dependencies:
+    csv-generate "^4.0.3"
+    csv-parse "^5.0.3"
+    csv-stringify "^6.0.4"
+    stream-transform "^3.0.3"
+
 cuint@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cuint/-/cuint-0.2.2.tgz#408086d409550c2631155619e9fa7bcadc3b991b"
@@ -3278,6 +3303,11 @@ ssri@^8.0.0, ssri@^8.0.1:
   integrity sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ==
   dependencies:
     minipass "^3.1.1"
+
+stream-transform@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/stream-transform/-/stream-transform-3.0.3.tgz#db9a3b47aef30fba8723d8c71e6ee3af7d2512ae"
+  integrity sha512-LU+lJFT1/slgy9Yvgdr21D6PAxm1O7KoEWmXWwiqAHsocbF7woPF0xBXDGuqRycTV3tcrLq0zk+5LhjgCgI3KQ==
 
 string-width@^1.0.1:
   version "1.0.2"
