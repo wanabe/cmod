@@ -1,0 +1,17 @@
+{
+  "name": "cmod",
+  "version": "0.0.1",
+  "description": "converter manager on desktop",
+  "main": "main.js",
+  "repository": "https://github.com/wanabe/cmod",
+  "author": "wanabe",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "yarn && yarn start",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^16.0.4"
+  }
+}
